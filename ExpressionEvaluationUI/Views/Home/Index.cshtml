@@ -1,0 +1,17 @@
+﻿@model ExpressionEvaluationModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post">
+    <div>
+    @Html.LabelFor(x=>x.Expression)
+        @Html.TextBoxFor(x => x.Expression)
+        <input type="submit" name="Evaluate" />
+
+    </div><div>
+        @Html.TextBoxFor(x => x.Value)
+       @Model.ErrorMessage       
+
+    </div>
+</form>
