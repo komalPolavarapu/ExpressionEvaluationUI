@@ -1,17 +1,30 @@
 ﻿@model ExpressionEvaluationModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Evaluate Expression";
 }
 
 <form method="post">
     <div>
-    @Html.LabelFor(x=>x.Expression)
+        @Html.LabelFor(x => x.Expression)
         @Html.TextBoxFor(x => x.Expression)
-        <input type="submit" name="Evaluate" />
-
-    </div><div>
-        @Html.TextBoxFor(x => x.Value)
-       @Model.ErrorMessage       
+        <input type="submit" name="Evaluate" value="Evaluate" />
 
     </div>
+    @if (Model != null)
+    {
+        if (string.IsNullOrWhiteSpace(Model.ErrorMessage))
+        {
+            <div>
+                @Html.LabelFor(x => x.Output) : @Html.DisplayFor(x => x.Output)
+            </div>
+        }
+        else
+        {
+            <div> @Html.DisplayFor(x => x.ErrorMessage)</div>
+        }
+    }
+
+
+
+
 </form>

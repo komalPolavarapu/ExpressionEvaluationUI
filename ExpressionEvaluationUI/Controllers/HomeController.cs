@@ -28,23 +28,21 @@ namespace ExpressionEvaluationUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(ExpressionEvaluationModel model)
         {
-            var client = new RestClient("");
+            var client = new RestClient(Environment.GetEnvironmentVariable("EvaluationAPI"));
             var req = new RestRequest(Method.GET);
             req.AddParameter("input", model.Expression);
             IRestResponse response = await client.ExecuteAsync(req);
             if(response.StatusCode == System.Net.HttpStatusCode.OK)
-            {
-                var okObjectresult = response as OkObjectResult;
-                model.Value = Convert.ToDouble(okObjectresult.Value);
+            {               
+                model.Output = Convert.ToDouble(response.Content);
             }
             else if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                var okObjectresult = response as BadRequestObjectResult;
-                model.ErrorMessage = (string)okObjectresult.Value;
+            {                
+                model.ErrorMessage = response.Content;
             }
             else
             {
-                model.ErrorMessage = "Exception in processing the expression, please contact the administrator.";
+                model.ErrorMessage = "Error in processing the expression, please contact the administrator.";
             }
             return View(model);
         }

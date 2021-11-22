@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ExpressionEvaluationUI/Properties/ServiceDependencies/ExpressionEvaluationWeb - Zip Deploy/profile.arm.json

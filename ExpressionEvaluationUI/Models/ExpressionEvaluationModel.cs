@@ -10,7 +10,7 @@ namespace ExpressionEvaluationUI.Models
 
         public string Expression { get; set; }
 
-        public double Value { get; set; }
+        public double Output { get; set; }
 
         public string ErrorMessage { get; set; }
     }
